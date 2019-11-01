@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FordModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Eventos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="start" Type="date" Nullable="false" />
+    <Property Name="end" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FilesUpload">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Arquivo" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Data" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Funcionarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeCompleto" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPF" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="70" Nullable="false" />
+    <Property Name="Telefone" Type="varchar" MaxLength="30" />
+    <Property Name="Endereco" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Estado" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CEP" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Senha" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Veiculos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdEvento" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Lote" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Modelo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Marca" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ano" Type="int" Nullable="false" />
+    <Property Name="Valor" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Participantes" Type="int" />
+    <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quilometragem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Cambio" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Carroceria" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Combustivel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ValorDoIPVA" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FinalDaPlaca" Type="int" Nullable="false" />
+    <Property Name="Opcionais" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Potencia" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Portas" Type="int" Nullable="false" />
+    <Property Name="Imagem" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="InclusoNaCompra" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Veiculos_Eventos">
+    <End Role="Eventos" Type="Self.Eventos" Multiplicity="1" />
+    <End Role="Veiculos" Type="Self.Veiculos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Eventos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Veiculos">
+        <PropertyRef Name="IdEvento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FordModelStoreContainer">
+    <EntitySet Name="Eventos" EntityType="Self.Eventos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FilesUpload" EntityType="Self.FilesUpload" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Funcionarios" EntityType="Self.Funcionarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Veiculos" EntityType="Self.Veiculos" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Veiculos_Eventos" Association="Self.FK_Veiculos_Eventos">
+      <End Role="Eventos" EntitySet="Eventos" />
+      <End Role="Veiculos" EntitySet="Veiculos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

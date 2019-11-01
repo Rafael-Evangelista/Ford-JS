@@ -1,0 +1,77 @@
+﻿<nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #eeecea;" ng-transclude>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="Principal.html" style="color: #283e93">HOME <span class="sr-only">(Página atual)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Veiculo.html" style="color: #283e93">VEÍCULOS </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Regulamento.html" style="color: #283e93">REGULAMENTO</a>
+            </li>
+        </ul>
+    </div>
+    <div class="btn-group" ng-controller="meusDadosCtrl">
+        <font size="2">
+            <img src="../Icon/user.svg" width="17" height="17" alt="" />&nbsp;
+            <button type="button" style="color: #283e93; background-color:#e9ebec; border-color:#e9ebec" ng-click="getdadosPorLogin()" class="border btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                MEUS DADOS
+            </button> &emsp;
+            <div class="dropdown-menu">
+                <a class="dropdown-item text-center"><b>Ford Leilão: Meus Dados</b></a>
+                <form class="">
+                    <div class="form-group">
+                        <label for="exampleDropdownFormPassword1">Nome</label>
+                        <input type="text" class="form-control" id="Name" placeholder="{{DadosPorLogin.NomeCompleto}}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email1">Email</label>
+                        <input type="email" class="form-control" id="mEmail1" placeholder="{{DadosPorLogin.Email}}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email1">Telefone</label>
+                        <input type="text" class="form-control" id="Telefone" placeholder="{{DadosPorLogin.Telefone}}" disabled>
+                    </div>
+                    <md-button class="md-raised" style="background-color:dodgerblue; color:white">Editar</md-button>
+                    <!--<button type="submit" class="btn btn-primary">Editar</button>-->
+                </form>
+            </div>
+        </font>
+        <div ng-init="getdadosPorLogin()">
+            <div ng-if="DadosPorLogin.UserRoles[0].RoleId == 1">
+                <img src="../Icon/newspaper.svg" width="18" height="18" alt="" />&nbsp;
+                <font size="2">
+                    <button type="button" style="color: #283e93; background-color:#e9ebec; border-color:#e9ebec" class="border">
+                        RELATÓRIOS
+                    </button>
+                </font>
+                <font size='2'>
+                    <img src='../Icon/settings.svg' width='18' height='18' alt='' />
+                    <button type='button' style='color: #283e93; background-color:#e9ebec; border-color:#e9ebec' class='border' data-toggle='modal' data-target='#modalExemplo'>CONFIGURAÇÕES</button>
+                </font>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Modal -->
+<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Configurações</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--<div class="modal-body">
+                Adicionar Veiculos:
+            </div>-->
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>

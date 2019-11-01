@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FordModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="FilesUpload">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Arquivo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Funcionarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomeCompleto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CPF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Telefone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Endereco" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CEP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Senha" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UserRoles" Relationship="FordModel.FK_UserRoles_Funcionarios" FromRole="Funcionarios" ToRole="UserRoles" />
+    <NavigationProperty Name="Sorteios" Relationship="FordModel.FK_Sorteios_Funcionarios" FromRole="Funcionarios" ToRole="Sorteios" />
+    <NavigationProperty Name="Sorteados_Bckp" Relationship="FordModel.FK_Sorteados_Bckp_Funcionarios" FromRole="Funcionarios" ToRole="Sorteados_Bckp" />
+  </EntityType>
+  <EntityContainer Name="FordEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FilesUpload" EntityType="Self.FilesUpload" />
+    <EntitySet Name="Funcionarios" EntityType="Self.Funcionarios" />
+    <EntitySet Name="Roles" EntityType="FordModel.Roles" />
+    <EntitySet Name="UserRoles" EntityType="FordModel.UserRoles" />
+    <AssociationSet Name="FK_UserRoles_Funcionarios" Association="FordModel.FK_UserRoles_Funcionarios">
+      <End Role="Funcionarios" EntitySet="Funcionarios" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Roles" Association="FordModel.FK_UserRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <EntitySet Name="Sorteios" EntityType="FordModel.Sorteios" />
+    <AssociationSet Name="FK_Sorteios_Funcionarios" Association="FordModel.FK_Sorteios_Funcionarios">
+      <End Role="Funcionarios" EntitySet="Funcionarios" />
+      <End Role="Sorteios" EntitySet="Sorteios" />
+    </AssociationSet>
+    <EntitySet Name="Veiculos" EntityType="FordModel.Veiculos" />
+    <AssociationSet Name="FK_Sorteios_Veiculos" Association="FordModel.FK_Sorteios_Veiculos">
+      <End Role="Veiculos" EntitySet="Veiculos" />
+      <End Role="Sorteios" EntitySet="Sorteios" />
+    </AssociationSet>
+    <EntitySet Name="Sorteados_Bckp" EntityType="FordModel.Sorteados_Bckp" />
+    <AssociationSet Name="FK_Sorteados_Bckp_Funcionarios" Association="FordModel.FK_Sorteados_Bckp_Funcionarios">
+      <End Role="Funcionarios" EntitySet="Funcionarios" />
+      <End Role="Sorteados_Bckp" EntitySet="Sorteados_Bckp" />
+    </AssociationSet>
+    <EntitySet Name="VeiculosSorteados_Bckp" EntityType="FordModel.VeiculosSorteados_Bckp" />
+    <EntitySet Name="Eventos" EntityType="FordModel.Eventos" />
+    <AssociationSet Name="FK_Veiculos_Eventos" Association="FordModel.FK_Veiculos_Eventos">
+      <End Role="Eventos" EntitySet="Eventos" />
+      <End Role="Veiculos" EntitySet="Veiculos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserRoles" Relationship="FordModel.FK_UserRoles_Roles" FromRole="Roles" ToRole="UserRoles" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="UserRolesId" />
+    </Key>
+    <Property Name="UserRolesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="FuncionarioId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Funcionarios" Relationship="FordModel.FK_UserRoles_Funcionarios" FromRole="UserRoles" ToRole="Funcionarios" />
+    <NavigationProperty Name="Roles" Relationship="FordModel.FK_UserRoles_Roles" FromRole="UserRoles" ToRole="Roles" />
+  </EntityType>
+  <Association Name="FK_UserRoles_Funcionarios">
+    <End Type="FordModel.Funcionarios" Role="Funcionarios" Multiplicity="1" />
+    <End Type="FordModel.UserRoles" Role="UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcionarios">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="FuncionarioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Roles">
+    <End Type="FordModel.Roles" Role="Roles" Multiplicity="1" />
+    <End Type="FordModel.UserRoles" Role="UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Sorteios">
+    <Key>
+      <PropertyRef Name="SorteioId" />
+    </Key>
+    <Property Name="SorteioId" Type="Guid" Nullable="false" />
+    <Property Name="FuncionarioId" Type="Int32" Nullable="false" />
+    <Property Name="VeiculoId" Type="Guid" Nullable="false" />
+    <Property Name="Sorteado" Type="Boolean" Nullable="false" />
+    <Property Name="NumeroDaSorte" Type="Int32" Nullable="false" />
+    <Property Name="Item" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Funcionarios" Relationship="FordModel.FK_Sorteios_Funcionarios" FromRole="Sorteios" ToRole="Funcionarios" />
+    <NavigationProperty Name="Veiculos" Relationship="FordModel.FK_Sorteios_Veiculos" FromRole="Sorteios" ToRole="Veiculos" />
+  </EntityType>
+  <Association Name="FK_Sorteios_Funcionarios">
+    <End Type="FordModel.Funcionarios" Role="Funcionarios" Multiplicity="1" />
+    <End Type="FordModel.Sorteios" Role="Sorteios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcionarios">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sorteios">
+        <PropertyRef Name="FuncionarioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Veiculos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="IdEvento" Type="Guid" Nullable="false" />
+    <Property Name="Lote" Type="Int32" Nullable="false" />
+    <Property Name="Modelo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ano" Type="Int32" Nullable="false" />
+    <Property Name="Valor" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Participantes" Type="Int32" />
+    <Property Name="Descricao" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Quilometragem" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Cambio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Carroceria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Combustivel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ValorDoIPVA" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="FinalDaPlaca" Type="Int32" Nullable="false" />
+    <Property Name="Opcionais" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Potencia" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Portas" Type="Int32" Nullable="false" />
+    <Property Name="Imagem" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InclusoNaCompra" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Placa" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Cor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Garantia" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Sorteios" Relationship="FordModel.FK_Sorteios_Veiculos" FromRole="Veiculos" ToRole="Sorteios" />
+    <NavigationProperty Name="Eventos" Relationship="FordModel.FK_Veiculos_Eventos" FromRole="Veiculos" ToRole="Eventos" />
+  </EntityType>
+  <Association Name="FK_Sorteios_Veiculos">
+    <End Type="FordModel.Veiculos" Role="Veiculos" Multiplicity="1" />
+    <End Type="FordModel.Sorteios" Role="Sorteios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Veiculos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sorteios">
+        <PropertyRef Name="VeiculoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Sorteados_Bckp">
+    <Key>
+      <PropertyRef Name="SorteioId" />
+    </Key>
+    <Property Name="SorteioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FuncionarioId" Type="Int32" Nullable="false" />
+    <Property Name="VeiculoId" Type="Guid" Nullable="false" />
+    <Property Name="Sorteado" Type="Boolean" Nullable="false" />
+    <Property Name="NumeroDaSorte" Type="Int32" Nullable="false" />
+    <Property Name="Item" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Funcionarios" Relationship="FordModel.FK_Sorteados_Bckp_Funcionarios" FromRole="Sorteados_Bckp" ToRole="Funcionarios" />
+  </EntityType>
+  <Association Name="FK_Sorteados_Bckp_Funcionarios">
+    <End Type="FordModel.Funcionarios" Role="Funcionarios" Multiplicity="1" />
+    <End Type="FordModel.Sorteados_Bckp" Role="Sorteados_Bckp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcionarios">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sorteados_Bckp">
+        <PropertyRef Name="FuncionarioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VeiculosSorteados_Bckp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdEvento" Type="Guid" Nullable="false" />
+    <Property Name="Modelo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ano" Type="Int32" Nullable="false" />
+    <Property Name="Valor" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Participantes" Type="Int32" Nullable="false" />
+    <Property Name="Descricao" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Quilometragem" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Cambio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Carroceria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Combustivel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ValorDoIPVA" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="FinalDaPlaca" Type="Int32" Nullable="false" />
+    <Property Name="Opcionais" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Potencia" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Portas" Type="Int32" Nullable="false" />
+    <Property Name="Imagem" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InclusoNaCompra" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Placa" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Cor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Garantia" Type="Boolean" Nullable="false" />
+    <Property Name="DataDoSorteio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="VeiculoId" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Eventos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="start" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="end" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="finished" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Veiculos" Relationship="FordModel.FK_Veiculos_Eventos" FromRole="Eventos" ToRole="Veiculos" />
+  </EntityType>
+  <Association Name="FK_Veiculos_Eventos">
+    <End Type="FordModel.Eventos" Role="Eventos" Multiplicity="1" />
+    <End Type="FordModel.Veiculos" Role="Veiculos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Eventos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Veiculos">
+        <PropertyRef Name="IdEvento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

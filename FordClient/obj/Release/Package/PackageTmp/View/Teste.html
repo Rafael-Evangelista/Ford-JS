@@ -1,0 +1,269 @@
+﻿<!--<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Rafael Evangelista">
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <title>Principal</title>
+    <style>
+        .card-body {
+            margin: 7px 7px;
+            padding: 0;
+            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+            font-size: 10px;
+        }
+
+        #calendar {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+    </style>
+</head>-->
+<body class="bg-light">
+    <div class="text-md-right" style="color:darkorange">
+        <img class="float-lg-left" src="../Img/FordLogo.png" width="110" height="90" alt="">
+        <br />
+        <br />
+        <!--<script>document.write("<h6> Olá " + sessionStorage.getItem('userName') + "!" + "</h6>");</script>-->
+        <font size="1" face="Arial" ng-controller="logoutCtrl"><a class="nav-nav-link active" href="" style="color: #283e93" ng-click="logout()">Sair</a></font>
+    </div>&ensp;
+    <div nav-custom>
+    </div>
+    <hr style="height:13px; border:none; color:#000; background-color:#1f425f; margin-top: 00px; margin-bottom: 0px;" />
+    <div class="text-center bg-white">
+        <font face="Cambria">
+            <h2>Um Veículo Para Cada Estilo</h2>
+            <h5 class="text-black-50">Aqui tem um Ford para cada estilo de vida clique e encontre o seu.</h5>
+            <div ng-controller="meusDadosCtrl">
+                <div ng-init="getdadosPorLogin()">
+                    <div ng-if="DadosPorLogin.UserRoles[0].RoleId == 1">
+                        <div button-verde></div>
+                    </div>
+                    <div ng-if="DadosPorLogin.UserRoles[0].RoleId != 1">
+                        <div button-azul></div>
+                    </div>
+                </div>
+            </div>
+            <img src="../Img/AmarokFordEcosport.png" width="620" height="230" alt="" />
+        </font>
+    </div>
+    <section class="h-100">
+        <div class="container mt-2">
+            <div class="row justify-content-around h-50">
+                <div class="card-deck" style="width: 70rem; height: 22rem;">
+                    <div class="card text-left">
+                        <div class="card-header text-white" style="background-color:darkorange">
+                            <img src="../Icon/edit.svg" width="20" height="20" alt="" />
+                            MEUS LOTES
+                        </div>
+                        <div class="card-body text-center">
+                            <img class="float-left" src="../Img/NEW-FIESTA.png" width="190" height="125" alt="" />
+                            <h6 class="card-title">NEW FIESTA</h6>
+                            <p class="card-text">1.6 TI-VCT-FLEX</p>
+                            <p class="card-text" style="color:darkorange">R$ 28.900</p>
+                        </div>
+                        <div class="card-body text-center">
+                            <img class="float-left" src="../Img/Veiculos/002.png" width="190" height="125" alt="" />
+                            <h6 class="card-title">ECOSPORT</h6>
+                            <p class="card-text">1.5 TI-VCT FLEX</p>
+                            <p class="card-text" style="color:darkorange">R$ 43.200</p>
+                        </div>
+                    </div>
+                    <div class="card text-left">
+                        <div class="card-header text-white" style="background-color:darkorange">
+                            <img src="../Icon/creative.svg" width="20" height="20" alt="" />
+                            DESTAQUES
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">28/02/2019 - Último dia para participar da campanha.</p>
+                        </div>
+                    </div>
+                    <div class="card text-left">
+                        <div class="card-header text-white" style="background-color:darkorange">
+                            <img src="../Icon/calendar.svg" width="20" height="20" alt="" />
+                            EVENTOS
+                        </div>
+                        <div class="card-body">
+                            <div id='calendar'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Modal -->
+    <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Configurações</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--<div class="modal-body">
+                    Adicionar Veiculos:
+                </div>-->
+                <div class="modal-body">
+                    Sorteio : <a class="btn btn-success btn-sm" href="Sorteio.html">Entrar </a>
+                </div>
+                <div class="modal-body">
+                    Importar Lotes : <input type="file" id="file" name="file" multiple ng-files="getTheFiles($files)">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="uploadFiles()" value="Upload">Importar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal de Adicionar Evento-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" ng-controller="eventoCtrl">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Evento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nome do Evento:</label>
+                            <input type="text" class="form-control" id="Title" ng-model="Title">
+                        </div>
+                        <div class="form-group">
+                            <label for="example-date-input" class="col-form-label">Data Inicial:</label>
+                            <input class="form-control" type="date" id="Start" ng-model="Start">
+                        </div><div class="form-group">
+                            <label for="example-date-input" class="col-form-label">Data Final:</label>
+                            <input class="form-control" type="date" id="End" ng-model="End">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="submit" class="btn btn-primary" onclick="Sweetalertclick()" ng-click="adicionarEvento()">Adicionar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <footer>
+        <div class="text-left">
+            <hr style="height:7px; border:none; color:#000; background-color:#1f425f; margin-top: 00px; margin-bottom: 0px;" />
+            <div class="float-left">
+                <font color="Navy" size="1" face="Verdana">
+                    &emsp; R.QUATÁ, 733 V.OLÍMPIA - SÃO PAULO - SP - TEL: (11)3845-5599 <br />
+                    &emsp; MILAN EXPRESS COPYRIGHT © - Todos Direitos Reservados
+                </font>
+            </div>
+            <img class="float-right" src="../Img/Milan_Express.png" width="170">
+        </div>
+    </footer>
+    <script>
+
+        function Sweetalertclick() {
+            var Title = $("#Title").val();
+            var Start = $("#Start").val();
+            var End = $("#End").val();
+
+            if (Title == '' || Start == '' || End == '') {
+
+                swal({
+                    title: "Campos vazios!!",
+                    text: "Por favor, verifique os campos em falta!!",
+                    icon: "warning",
+                    button: "Ok",
+                });
+
+            } else {
+                swal({
+                    title: "Adicionado com sucesso",
+                    icon: "success",
+                    button: "Ok",
+                });
+
+                limpar();
+            };
+        };
+
+        function limpar() {
+            document.getElementById('Title').value = "";
+            document.getElementById('Start').value = "";
+            document.getElementById('End').value = "";
+        };
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: 'pt-br',
+                plugins: ['interaction', 'dayGrid'],
+                header: {
+                    left: 'prevYear,prev,next,nextYear today',
+                    left: 'prev,next ',
+                    center: 'title',
+                    right: 'today,dayGridMonth,dayGridDay',
+                    center: 'title',
+                },
+
+                defaultDate: '2019-05-12',
+                navLinks: true,
+                editable: true,
+                eventLimit: true,
+                events: {
+                    url: window.__env.apiUrl + '/api' + '/Eventos',
+                    method: 'GET',
+                    extraParams: {
+                        custom_param1: 'something',
+                        custom_param2: 'somethingelse'
+                    },
+                    failure: function () {
+                        alert('there was an error while fetching events!');
+                    },
+                    color: '#064f77',
+                    textColor: 'white'
+                }
+            });
+
+            calendar.render();
+        });
+
+    </script>
+    <!--<link href="../Content/core/main.css" rel="stylesheet" />
+    <link href="../Content/daygrid/main.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-3.4.1.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <script src="../Scripts/angular.min.js"></script>
+    <script src="../Scripts/angular-route.js"></script>
+    <script src="../Content/core/main.js"></script>
+    <script src="../Content/interaction/main.js"></script>
+    <script src="../Content/daygrid/main.js"></script>
+    <script src="../Content/core/locales/pt-br.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="../Angular/env.js"></script>
+    <script src="../Angular/app.js"></script>
+    <script src="../Angular/TelaPrincipal/Service.js"></script>
+    <script src="../Angular/TelaPrincipal/Controller.js"></script>
+    <script src="../Angular/Eventos/Service.js"></script>
+    <script src="../Angular/Eventos/Controller.js"></script>
+    <script src="../Angular/MeusDados/Service.js"></script>
+    <script src="../Angular/MeusDados/Controller.js"></script>
+    <script src="../Angular/Logout/Controller.js"></script>
+    <script src="../Angular/Directives/ButtonsCustomDirective.js"></script>
+    <script src="../Angular/Directives/NavBarCustomDirective.js"></script>
+    <script src="../Angular/token-interceptor.js"></script>-->
+</body>
+<!--</html>-->

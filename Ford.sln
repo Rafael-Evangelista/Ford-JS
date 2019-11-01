@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FordClient", "FordClient\FordClient.csproj", "{E361281A-B6DF-4BB7-AF0F-5061CB79264F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FordAPI", "FordAPI\FordAPI.csproj", "{D3943972-A16E-4DCC-BDD1-A27531D3BCF0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E361281A-B6DF-4BB7-AF0F-5061CB79264F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E361281A-B6DF-4BB7-AF0F-5061CB79264F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E361281A-B6DF-4BB7-AF0F-5061CB79264F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E361281A-B6DF-4BB7-AF0F-5061CB79264F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3943972-A16E-4DCC-BDD1-A27531D3BCF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3943972-A16E-4DCC-BDD1-A27531D3BCF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3943972-A16E-4DCC-BDD1-A27531D3BCF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3943972-A16E-4DCC-BDD1-A27531D3BCF0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25F679F5-8259-4898-994A-2F5DA48761DC}
+	EndGlobalSection
+EndGlobal

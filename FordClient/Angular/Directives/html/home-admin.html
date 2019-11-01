@@ -1,0 +1,135 @@
+﻿<hr style="height:13px; border:none; color:#000; background-color:#1f425f; margin-top: 00px; margin-bottom: 0px;" />
+<br />
+<div ng-controller="loadingCtrl">
+    <div class="col-xs-6">
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="row justify-content-sm-start">
+                        <div class="card-deck" style="width: 70rem; height: 25rem;">
+                            <div class="card text-left col-12 col-sm-6 col-md-12">
+                                <p>
+                                    <div class="card-header text-white" style="background-color:darkorange">
+                                        <img src="../Icon/calendar.svg" width="20" height="20" alt="" />
+                                        EVENTOS
+                                    </div>
+                                    <div class="d-flex">
+                                        <div ng-controller="sorteioCtrl">
+                                            <br />
+                                            <font color="orange" size="2">NOME DO EVENTO</font>
+                                            <br />
+                                            <input type="text" class="form-control col-6" id="Title" ng-model="Title">
+                                            <font color="orange" size="2">DATA INICIAL</font>
+                                            <br />
+                                            <input class="form-control col-6" type="date" id="Start" ng-model="Start">
+                                            <font color="orange" size="2">DATA FINAL</font>
+                                            <br />
+                                            <input class="form-control col-6" type="date" id="End" ng-model="End">
+                                            <br />
+                                            Importar Lotes :
+                                            <input type="file" id="file" name="file" multiple ng-files="getTheFiles($files)">
+                                            <br />
+                                            <br />
+                                            <md-button class="md-raised" ng-click="adicionarEvento()" style="background-color:dodgerblue; color:white">Importar Lotes</md-button>
+                                            <!--<button type="button" onclick="limpar()" ng-click="adicionarEvento()" class="btn btn-primary btn-sm">Importar Lotes</button>-->
+                                            <br />
+                                        </div>
+                                        <div class="card-body">
+                                            <div ng-controller="Calendar">
+                                                <div id='calendar'></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </p>
+                            </div>
+                            <div class="card text-left col-3 col-sm-3 col-md-3  bd-highlight">
+                                <p>
+                                    <div class="card-header text-white" style="background-color:darkorange">
+                                        SORTEIOS
+                                    </div>
+                                    <div class="card-body">
+                                        <div ng-controller="sorteioCtrl" class="md-padding" ng-cloak>
+                                            <div ng-repeat="evt in Eventos">
+                                                <div ng-if="evt.finished == 0">
+                                                    <div layout-wrap layout-gt-sm="row">
+                                                        <div flex-gt-sm="100">
+                                                            <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1" class="green">
+                                                                {{evt.start| date:'dd/MM'  }} | {{evt.end| date:'dd/MM' }} — {{evt.title}}
+                                                            </md-checkbox>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <md-button class="md-raised" ng-click="sortearNumeros(evt.start)" style="background-color:green; color:white">
+                                                        <span ng-show="!loading">SORTEAR</span>
+                                                        <!--<button type="button" ng-click="sortearNumeros(evt.Start)" class="btn btn-success btn-sm">
+                                                        <span ng-show="!loading">SORTEAR</span>-->
+                                                        <img src="../../../Icon/Gifs/Spinner.loading.gif" ng-show="loading" style="width:30px;" />
+                                                        <!--<md-progress-circular md-mode="indeterminate" md-diameter="20"></md-progress-circular>-->
+                                                        <!--</button>-->
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+        </section>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="row justify-content-start">
+                        <div class="card-deck" style="width: 70rem; height: 24rem;">
+                            <div class="card text-left col-12 col-sm-6 col-md-12">
+                                <p>
+                                    <div class="card-header text-white" style="background-color:darkorange">
+                                        <img src="../Icon/creative.svg" width="20" height="20" alt="" />
+                                        ÚLTIMO SORTEIO
+                                    </div>
+                                    <table class="table" id="dvData">
+                                        <thead>
+                                            <tr>
+                                                <th>COLABORADOR</th>
+                                                <th>MODELO</th>
+                                                <th>PLACA</th>
+                                                <th>COR</th>
+                                                <th>ANO DE FAB</th>
+                                                <th>GARANTIA</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-controller="sorteioCtrl">
+                                            <tr dir-paginate="ultSort in UltimoSorteio | itemsPerPage:5">
+                                                <td>{{ultSort.Sorteado.Funcionarios.CPF}}</td>
+                                                <td>{{ultSort.Veiculo.Modelo}}</td>
+                                                <td>{{ultSort.Veiculo.Placa}}</td>
+                                                <td>{{ultSort.Veiculo.Cor}}</td>
+                                                <td>{{ultSort.Veiculo.Ano}}</td>
+                                                <td>{{ultSort.Veiculo.Garantia == true ? 'Sim' : 'Não'}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="text-center">
+                                        <dir-pagination-controls boundary-links="true"></dir-pagination-controls>
+                                    </div>
+                                    <div class="d-flex align-items-end flex-column bd-highlight" style="height: 75px;">
+                                        <button type="button" class="btn btn-link"><img class="mt-auto p-2 bd-highlight" onclick="ExportToExcel()" id="btnExport" src="../Icon/xls-open-file-format.svg" width="45" height="45" alt="" /></button>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </section>
+        <br />
+        <br />
+    </div>
+</div>
+

@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Rafael Evangelista">
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <title class="text-center" style="color: Highlight">REGULAMENTO LEILÃO ONLINE</title>
+    <style>
+        a:link {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="text-md-right" style="color:darkorange">
+        <img class="float-lg-left" src="../Img/FordLogo.png" width="110" height="90" alt="">
+        <br />
+        <script>document.write("<h6> Olá " + sessionStorage.getItem('userName') + "!" + "</h6>");</script>
+        <font size="1" face="Arial" ng-controller="logoutCtrl"><a class="nav-nav-link active" href="" style="color: #283e93" ng-click="logout()">Sair</a></font>
+    </div>&ensp;
+    <div nav-custom>
+    </div>
+    <hr style="height:13px; border:none; color:#000; background-color:#1f425f; margin-top: 00px; margin-bottom: 0px;" />
+    <br />
+    <center><h2>CONTRATO DE ADESÃO AO SITE DA FORD</h2></center>
+    <br />
+    <div style="text-align: center;">
+        <h6>CADASTRO</h6>
+        3. O cadastro de usuário no site Milan Leiloes é totalmente gratuito.
+
+        3.1 Para usufruir os serviços do site Milan Leiloes o USUÁRIO deverá antecipadamente aceitar os termos deste Contrato de Adesão ao Site Milan Leilões, assim como preencher completamente seus dados cadastrais.
+
+        3.2 O Cadastro de Pessoa Física deverá ser feito obrigatoriamente com o preenchimento dos seguintes campos:
+
+        a) Nome Completo; b) E-Mail; c) Apelido; d) Data de Nascimento; e) Sexo;
+        f) Estado Civil; g) RG; h) CPF; i) DDD; j) Telefone Res.; k) Telefone Com.;
+        l) Celular; m) Endereço; n) Número; o) Complemento; p) Bairro; q) Cidade;
+        r) UF; s) CEP; t) Empresa onde trabalha; u) Banco (principal); v) Agência.
+
+        3.3 O Cadastro de Pessoa Jurídica deverá ser feito obrigatoriamente com o preenchimento dos seguintes campos:
+
+        a) Razão Social; b) Nome Fantasia; c) CNPJ; d) Inscrição Estadual; e) Endereço;
+        f) Número; g) Complemento; h) Bairro; i) Cidade; j) UF; k) CEP;
+        l) Banco (principal); m) Agência;
+        INFORMAÇÕES DE CONTATO:
+
+        n) Nome; o) E-Mail; p) Apelido; q) RG; r) CPF; s) Sexo; t) Cargo; u) DDD;
+        v) Telefone Res.; x) Telefone Com.; y) Celular.
+
+        3.4 O cadastro do USUÁRIO dependerá da confirmação do site Milan Leilões através de envio de e-mail e de sua aprovação pela equipe administrativa somente após envio do “Contrato de Adesão ao Site Milan leilões” assinado, cópias do RG, CPF e comprovante de endereço, e a análise dos órgãos de proteção de crédito onde não deverá constar nenhum apontamento positivo. A Milan Leilões efetuará as avaliações para a aprovação dos cadastros solicitados a seu exclusivo critério e parâmetros, e caberá a Milan Leilões/ou comitente vendedor a decisão de aprovação ou não para acesso aos leilões, sem que isto implique em direito algum ao solicitante do cadastro.
+
+        3.5 O site Milan Leilões está disponível para empresas e pessoas físicas, mas reserva-se o direito de cancelar o registro de USUÁRIO a qualquer tempo, ao seu critério, assegurando o sigilo quanto a este procedimento.
+
+        3.6 Os usuários registrados envolvidos em leilões no site Milan Leilões autorizam expressamente a verificação de sua idoneidade junto aos diversos serviços de proteção ao crédito.
+
+    </div>
+    <br />
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="../Scripts/angular.min.js"></script>
+    <script src="../Scripts/angular-animate.js"></script>
+    <script src="../Scripts/angular-aria.min.js"></script>
+    <script src="../Scripts/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="../Scripts/angular-material.min.js"></script>
+
+    <script src="../Scripts/ui-bootstrap/ui-bootstrap-3.0.6.min.js"></script>
+    <script src="../Scripts/angular-route.js"></script>
+
+    <!--AngulaJS-->
+    <script src="../Angular/env.js"></script>
+    <script src="../Angular/app.js"></script>
+    <script src="../Angular/MeusDados/Service.js"></script>
+    <script src="../Angular/MeusDados/Controller.js"></script>
+    <script src="../Angular/Logout/Controller.js"></script>
+    <script src="../Angular/Directives/ButtonsCustomDirective.js"></script>
+    <script src="../Angular/Directives/NavBarCustomDirective.js"></script>
+    <script src="../Scripts/Pagination/dirPagination.js"></script>
+</body>
+</html>

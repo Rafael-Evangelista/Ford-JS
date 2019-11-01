@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FordModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Funcionarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomeCompleto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CPF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Telefone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Endereco" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CEP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Senha" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="FordEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Funcionarios" EntityType="Self.Funcionarios" />
+    <EntitySet Name="Veiculos" EntityType="FordModel.Veiculos" />
+    <EntitySet Name="FilesUpload" EntityType="FordModel.FilesUpload" />
+    <EntitySet Name="Eventos" EntityType="FordModel.Eventos" />
+    <AssociationSet Name="FK_Veiculos_Eventos" Association="FordModel.FK_Veiculos_Eventos">
+      <End Role="Eventos" EntitySet="Eventos" />
+      <End Role="Veiculos" EntitySet="Veiculos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Veiculos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Lote" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Modelo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ano" Type="Int32" Nullable="false" />
+    <Property Name="Valor" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Participantes" Type="Int32" />
+    <Property Name="Descricao" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Imagem" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Quilometragem" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Cambio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Carroceria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Combustivel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ValorDoIPVA" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="FinalDaPlaca" Type="Int32" Nullable="false" />
+    <Property Name="Potencia" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Portas" Type="Int32" Nullable="false" />
+    <Property Name="Opcionais" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InclusoNaCompra" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdEvento" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Eventos" Relationship="FordModel.FK_Veiculos_Eventos" FromRole="Veiculos" ToRole="Eventos" />
+  </EntityType>
+  <EntityType Name="FilesUpload">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Arquivo" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Eventos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="start" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="end" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Veiculos" Relationship="FordModel.FK_Veiculos_Eventos" FromRole="Eventos" ToRole="Veiculos" />
+  </EntityType>
+  <Association Name="FK_Veiculos_Eventos">
+    <End Type="FordModel.Eventos" Role="Eventos" Multiplicity="1" />
+    <End Type="FordModel.Veiculos" Role="Veiculos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Eventos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Veiculos">
+        <PropertyRef Name="IdEvento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

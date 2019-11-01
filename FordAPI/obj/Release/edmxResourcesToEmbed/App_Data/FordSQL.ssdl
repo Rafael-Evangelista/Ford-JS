@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FordModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Eventos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Start" Type="date" Nullable="false" />
+    <Property Name="End" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FilesUpload">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Arquivo" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Data" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Funcionarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeCompleto" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPF" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="70" Nullable="false" />
+    <Property Name="Telefone" Type="varchar" MaxLength="30" />
+    <Property Name="Endereco" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Estado" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CEP" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Senha" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sorteados_Bckp">
+    <Key>
+      <PropertyRef Name="SorteioId" />
+    </Key>
+    <Property Name="SorteioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FuncionarioId" Type="int" Nullable="false" />
+    <Property Name="VeiculoId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Sorteado" Type="bit" Nullable="false" />
+    <Property Name="NumeroDaSorte" Type="int" Nullable="false" />
+    <Property Name="Item" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Data" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sorteios">
+    <Key>
+      <PropertyRef Name="SorteioId" />
+    </Key>
+    <Property Name="SorteioId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FuncionarioId" Type="int" Nullable="false" />
+    <Property Name="VeiculoId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Sorteado" Type="bit" Nullable="false" />
+    <Property Name="NumeroDaSorte" Type="int" Nullable="false" />
+    <Property Name="Item" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="UserRolesId" />
+    </Key>
+    <Property Name="UserRolesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="FuncionarioId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Veiculos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdEvento" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Lote" Type="int" Nullable="false" />
+    <Property Name="Modelo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Marca" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ano" Type="int" Nullable="false" />
+    <Property Name="Valor" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Participantes" Type="int" />
+    <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quilometragem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Cambio" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Carroceria" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Combustivel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ValorDoIPVA" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FinalDaPlaca" Type="int" Nullable="false" />
+    <Property Name="Opcionais" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Potencia" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Portas" Type="int" Nullable="false" />
+    <Property Name="Imagem" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="InclusoNaCompra" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Placa" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Cor" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Garantia" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VeiculosSorteados_Bckp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdEvento" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Modelo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Marca" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ano" Type="int" Nullable="false" />
+    <Property Name="Valor" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Participantes" Type="int" Nullable="false" />
+    <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quilometragem" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Cambio" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Carroceria" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Combustivel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ValorDoIPVA" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FinalDaPlaca" Type="int" Nullable="false" />
+    <Property Name="Opcionais" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Potencia" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Portas" Type="int" Nullable="false" />
+    <Property Name="Imagem" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="InclusoNaCompra" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Placa" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Cor" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Garantia" Type="bit" Nullable="false" />
+    <Property Name="DataDoSorteio" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Sorteados_Bckp_Funcionarios">
+    <End Role="Funcionarios" Type="Self.Funcionarios" Multiplicity="1" />
+    <End Role="Sorteados_Bckp" Type="Self.Sorteados_Bckp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcionarios">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sorteados_Bckp">
+        <PropertyRef Name="FuncionarioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sorteios_Funcionarios">
+    <End Role="Funcionarios" Type="Self.Funcionarios" Multiplicity="1" />
+    <End Role="Sorteios" Type="Self.Sorteios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcionarios">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sorteios">
+        <PropertyRef Name="FuncionarioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sorteios_Veiculos">
+    <End Role="Veiculos" Type="Self.Veiculos" Multiplicity="1" />
+    <End Role="Sorteios" Type="Self.Sorteios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Veiculos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sorteios">
+        <PropertyRef Name="VeiculoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Funcionarios">
+    <End Role="Funcionarios" Type="Self.Funcionarios" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcionarios">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="FuncionarioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Veiculos_Eventos">
+    <End Role="Eventos" Type="Self.Eventos" Multiplicity="1" />
+    <End Role="Veiculos" Type="Self.Veiculos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Eventos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Veiculos">
+        <PropertyRef Name="IdEvento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FordModelStoreContainer">
+    <EntitySet Name="Eventos" EntityType="Self.Eventos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FilesUpload" EntityType="Self.FilesUpload" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Funcionarios" EntityType="Self.Funcionarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sorteados_Bckp" EntityType="Self.Sorteados_Bckp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sorteios" EntityType="Self.Sorteios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Veiculos" EntityType="Self.Veiculos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VeiculosSorteados_Bckp" EntityType="Self.VeiculosSorteados_Bckp" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Sorteados_Bckp_Funcionarios" Association="Self.FK_Sorteados_Bckp_Funcionarios">
+      <End Role="Funcionarios" EntitySet="Funcionarios" />
+      <End Role="Sorteados_Bckp" EntitySet="Sorteados_Bckp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sorteios_Funcionarios" Association="Self.FK_Sorteios_Funcionarios">
+      <End Role="Funcionarios" EntitySet="Funcionarios" />
+      <End Role="Sorteios" EntitySet="Sorteios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sorteios_Veiculos" Association="Self.FK_Sorteios_Veiculos">
+      <End Role="Veiculos" EntitySet="Veiculos" />
+      <End Role="Sorteios" EntitySet="Sorteios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Funcionarios" Association="Self.FK_UserRoles_Funcionarios">
+      <End Role="Funcionarios" EntitySet="Funcionarios" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Roles" Association="Self.FK_UserRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Veiculos_Eventos" Association="Self.FK_Veiculos_Eventos">
+      <End Role="Eventos" EntitySet="Eventos" />
+      <End Role="Veiculos" EntitySet="Veiculos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

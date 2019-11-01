@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <meta name="author" content="Rafael Evangelista">
+    <base href="/" />
+    <title>Ford</title>
+    <script src="Scripts/SweetAlert/sweetalert.min.js"></script>
+    <link href="../Content/all.css" rel="stylesheet" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="../Scripts/angular.min.js"></script>
+    <script src="../Scripts/angular-animate.js"></script>
+    <script src="../Scripts/angular-aria.min.js"></script>
+    <script src="../Scripts/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="../Scripts/angular-material.min.js"></script>
+
+    <script src="Scripts/ui-bootstrap/ui-bootstrap-3.0.6.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <link href="../Content/core/main.css" rel="stylesheet" />
+    <link href="../Content/daygrid/main.css" rel="stylesheet" />
+    <script src="../Content/core/main.js"></script>
+    <script src="../Content/interaction/main.js"></script>
+    <script src="../Content/daygrid/main.js"></script>
+    <script src="../Content/core/locales/pt-br.js"></script>
+
+    <!--AngulaJS-->
+    <script src="Angular/env.js"></script>
+    <script src="Angular/app.js"></script>
+    <script src="Angular/route.js"></script>
+    <script src="Angular/Login/Service.js"></script>
+    <script src="Angular/Login/Controller.js"></script>
+    <script src="Angular/CadastroDeFuncionarios/Service.js"></script>
+    <script src="Angular/CadastroDeFuncionarios/Controller.js"></script>
+    <script src="Angular/TelaPrincipal/Service.js"></script>
+    <script src="Angular/TelaPrincipal/Controller.js"></script>
+    <script src="Angular/MeusDados/Service.js"></script>
+    <script src="Angular/MeusDados/Controller.js"></script>
+    <script src="Angular/Logout/Controller.js"></script>
+    <script src="Angular/Directives/ButtonsCustomDirective.js"></script>
+    <script src="Angular/Directives/NavBarCustomDirective.js"></script>
+    <script src="Scripts/Pagination/dirPagination.js"></script>
+
+    <style type="text/css">
+        .hidden {
+            display: none;
+        }
+
+        input {
+            display: block;
+        }
+
+        .card-body {
+            margin: 7px 7px;
+            padding: 0;
+            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+            font-size: 10px;
+        }
+
+        #calendar {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body ng-app="app">
+    <div ng-view>
+    </div>
+</body>
+</html>

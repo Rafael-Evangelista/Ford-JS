@@ -1,0 +1,89 @@
+﻿<body class="my-login-page bg-light">
+    <img src="../Img/FordLogo.png" width="110" height="90" alt="">
+    <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #eeecea;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <font color="Navy" size="2" face="Arial">PROGRAMA DE SORTEIO E LEILÃO DE VEÍCULOS FORD.</font>
+            </div>
+        </div>
+        <font color="Navy" size="2" face="Arial">
+            DÚVIDAS?
+        </font>
+    </nav>
+    <hr style="height:13px; border:none; color:#000; background-color:#1f425f; margin-top: 00px; margin-bottom: 0px;" />
+
+    <section class="h-100">
+        <div class="container mt-5">
+            <div class="row justify-content-around h-50">
+                <div class="card-wrapper">
+                    <div class="brand">
+                        <div class="card fat">
+                            <div class="card-body">
+                                <br />
+                                <a href="/Cadastro"><h3 class="card-title text-center" style=" color: #283e93" ;>QUERO ME <p>CADASTRAR</p></h3></a>
+                                <img src="../Img/ECO_E_FOCUS.jpg" width="245" height="185" alt=""><br /><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-wrapper">
+                    <div class="brand">
+                        <div class="card fat">
+                            <div class="card-body">
+                                <br />
+                                <h3 class="card-title text-center" style=" color: #f76b07" ;>USUÁRIO <p>CADASTRADO</p></h3>
+                                <br />
+                                <form method="POST" class="col-12">
+                                    <div class="form-group">
+                                        <input id="login" class="form-control" ng-model="Login" name="login" value="" placeholder="ID/LOGIN" required autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="senha" type="password" class="form-control" ng-model="Senha" name="senha" placeholder="SENHA" required data-eye>
+                                    </div>
+                                    <div class="form-group no-margin">
+                                        <input type="button" value="Entrar" class="form-control btn btn-block text-white" style="background-color: #ff6a00"
+                                               ng-click="login()" />
+                                    </div>
+                                    <div id="UsuarioInvalido" class="hidden">
+                                        <font color="red">
+                                            Usuário ou senha incorreta.
+                                        </font>
+                                    </div>
+                                    <font size="2" face="Verdana"><a class="nav-nav-link active text-center" href="Views/RecuperarSenha.html" style="color: #283e93">Esqueci a senha</a></font>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <footer>
+        <div class="text-left">
+            <br />
+            <br />
+            <div class="float-left">
+                <font color="Navy" size="1" face="Verdana">
+                    <br />
+                    &emsp; R.QUATÁ, 733 V.OLÍMPIA - SÃO PAULO - SP - TEL: (11)3845-5599 <br />
+                    &emsp; MILAN EXPRESS COPYRIGHT © - Todos Direitos Reservados
+                </font>
+            </div>
+            <img class="float-right" src="../Img/Milan_Express.png" width="170">
+        </div>
+    </footer>
+    <script>
+        function UsuarioInvalido() {
+            document.getElementById('UsuarioInvalido').style.display = 'block';
+        }
+    </script>
+
+</body>

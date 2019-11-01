@@ -1,0 +1,49 @@
+﻿<hr style="height:13px; border:none; color:#000; background-color:#1f425f; margin-top: 00px; margin-bottom: 0px;" />
+<div class="text-center bg-white">
+    <font face="Cambria">
+        <h2>Um Veículo Para Cada Estilo</h2>
+        <h5 class="text-black-50">Aqui tem um Ford para cada estilo de vida clique e encontre o seu.</h5>
+        <a href='Veiculo.html' type='button' id='submit' class='btn btn-primary'>VEICULOS</a><br />
+        <img src="../Img/AmarokFordEcosport.png" width="620" height="230" alt="" />
+    </font>
+</div>
+<section class="h-100">
+    <div class="container mt-2" ng-controller="sorteioCtrl">
+        <div class="row justify-content-around h-50" ng-init="MeusLotes()">
+            <div class="card-deck" style="width: 70rem; height: 22rem;">
+                <div class="card text-left">
+                    <div class="card-header text-white" style="background-color:darkorange">
+                        <img src="../Icon/edit.svg" width="20" height="20" alt="" />
+                        MEUS LOTES
+                    </div>
+                    <div class="card-body text-center" ng-repeat="lotes in MeusLotes">
+                        <a href="Veiculo.html"><img src="../Img/Veiculos/{{lotes.Imagem}}" class="float-left img-thumbnail" alt="Cinque Terre" width="170" height="130" alt="" /></a>
+                        <p class="h6 card-title">{{lotes.Marca}}/{{lotes.Modelo}}</p>
+                        <p class="h6 card-text">{{lotes.Potencia}} {{lotes.Combustivel}} {{lotes.Carroceria}}</p>
+                        <p class="h6 card-text" style="color:darkorange">{{lotes.Valor | currency:'R$ '}}</p>
+                    </div>
+                </div>
+                <div class="card text-left">
+                    <div class="card-header text-white" style="background-color:darkorange">
+                        <img src="../Icon/creative.svg" width="20" height="20" alt="" />
+                        DESTAQUES
+                    </div>
+                    <div class="card-body">
+                        <p class=" h6 card-text">28/07/2019 - Último dia para participar da campanha.</p>
+                    </div>
+                </div>
+                <div class="card text-left">
+                    <div class="card-header text-white" style="background-color:darkorange">
+                        <img src="../Icon/calendar.svg" width="20" height="20" alt="" />
+                        EVENTOS
+                    </div>
+                    <div class="card-body">
+                        <div ng-controller="Calendar">
+                            <div id='calendar'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
